@@ -11,10 +11,7 @@ socket.on('connect', function (){
 
     //message emmit
 
-    socket.emit('createMessage', {
-        from:'jon@example.com',
-        text:'hey How are you'
-    });
+   
 });
 
 socket.on('disconnect', function (){
@@ -22,10 +19,10 @@ socket.on('disconnect', function (){
     console.log('Disconnected from server')
 })
 
-socket.on('newEmail', function (email){
+// socket.on('newEmail', function (email){
 
-    console.log('New Email', email);
-});
+//     console.log('New Email', email);
+// });
 
 //message from client
 

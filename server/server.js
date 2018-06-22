@@ -27,19 +27,13 @@ io.on('connection', (socket)=>{
 
   //server emitting message
 
-  socket.emit('newMessage',{
-
-    from:'john',
-    text:'How are you',
-    createdAt:123123
-  })
 
 
   //from client to server
 
-  socket.on('createEmail', (newEmail)=>{
-     console.log('createEmail', newEmail);
-  });
+  // socket.on('createEmail', (newEmail)=>{
+  //    console.log('createEmail', newEmail);
+  // });
   socket.on('disconnect', ()=>{
     console.log('User was disconnected');
   })
@@ -54,6 +48,12 @@ io.on('connection', (socket)=>{
   //from c-s
   socket.on('createMessage', (message)=>{
     console.log('message', message);
+
+    io.emit('newMessage',{
+      from:message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });// emits every single connection
  });
 
 }) //register an event listener
