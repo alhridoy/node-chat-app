@@ -18,12 +18,27 @@ io.on('connection', (socket)=>{
 
   console.log('New User connected');
 
+  socket.emit('newMessage', {
+    from: 'Admin',
+    text:'Welcome to the chat App'
+  })
+
+  //socketbroadcast.emit from admin text new user joined
+
+  socket.broadcast.emit('newMessage', {
+
+    from:'Admin',
+    text : 'New User joined',
+    createdAt: new Date().getTime()
+
+  })
+
   //server emitting to client with data
-  socket.emit('newEmail', {
-    from:'aliqramalaheehridoy@gmail.com',
-    text:'Hey. whats is going on',
-    creatAt:123
-  });
+  // socket.emit('newEmail', {
+  //   from:'aliqramalaheehridoy@gmail.com',
+  //   text:'Hey. whats is going on',
+  //   creatAt:123
+  // });
 
   //server emitting message
 
@@ -54,6 +69,16 @@ io.on('connection', (socket)=>{
       text: message.text,
       createdAt: new Date().getTime()
     });// emits every single connection
+
+    //  socket.broadcast.emit('newMessage',{
+
+    //   from: message.from,
+    //   text: message.text,
+    //   createdAt: new Date().getTime()
+
+
+    //  })
+    //sadjofh
  });
 
 }) //register an event listener
